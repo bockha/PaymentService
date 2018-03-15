@@ -109,7 +109,11 @@ public class Bitcoin implements WalletCoinsReceivedEventListener, WalletChangeEv
     }
 
     public void start(ServletContext sctx) { // TODO: this method must be called once only!
-        String workDir = System.getProperty("user.home") + "/." + PREFIX;
+        String workDir;
+        workDir = System.getenv("JETTY_BASE");
+        if (null == workDir)
+            workDir = System.getProperty("user.home");
+        workDir += "/." + PREFIX;
         if (!new File(workDir).mkdirs())
             logger.error("Could not create working directory " + workDir);
 
