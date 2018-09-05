@@ -2,11 +2,11 @@ console.log('Starting Websocket Client');
 
 var invoice = {
     totalAmount: 200000,
-    referenceId: 'Brot',
+    referenceId: 'Standard Drink',
     expiration: new Date(new Date().getTime() + (7 * 24 * 60 * 60 * 1000)).toISOString(),
     transfers: [{
         address: pubkeys[Math.floor(Math.random()*pubkeys.length)] || 'n2oGNcjsnzB34UYdAvipFoEyR9z4qnLsd5',
-        coin: 100000
+        coin: 25000 * Math.floor(1 + 4 * Math.random())
     }]
 };
 
