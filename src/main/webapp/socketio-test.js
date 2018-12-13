@@ -10,6 +10,28 @@ var invoice = {
     }]
 };
 
+// interpret url anchor data as invoice ID
+invoiceId = $(location).attr('hash').slice(1);
+
+function getInvoiceById() {
+    var request = new XMLHttpRequest();
+    request.open("GET","http://localhost:8765/v1/invoices/" + invoiceId);
+    request.addEventListener('load', function(event) {
+        if (request.status >= 200 && request.status < 300) {
+            console.log(request.responseText);
+        } else {
+            console.warn(request.statusText, request.responseText);
+            // TODO create new invoice and add anchor to location (url)
+        }
+    });
+    request.send();
+}
+
+if (Boolean(invoiceId)) {
+    getInvoiceById();
+}
+
+
 // http://jsfiddle.net/unLSJ/1309/
 if (!library)
    var library = {};
